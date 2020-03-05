@@ -29,11 +29,43 @@ class PostPage extends Component {
         this.setState({creating: false});
         const content = this.postContentElRef.current.value;
         const bid = this.bidElRef.current.value;
-        
+
         if(content.trim().length === 0 || bid <= 0) {
             alert("Invalid Post");
             return;
         }
+        const requestBody = {
+            query: `
+            mutation {createPost (postInput: {disId: "${this.discussionId}", parId: "0", owner: "0x001", content: "${content}"}) {
+                _id
+                disId {
+                    _id
+                }
+                parId
+                owner
+                content
+                }
+            }
+            `
+        };
+        //send request via backend
+        fetch('http://localhost:8000/graphql', {
+            method: 'POST',
+            body: JSON.stringify(requestBody),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => {
+            if(res.status !== 200 && res.status !== 201) {
+                throw new Error('Failed!');
+            }
+            return res.json();
+        }).then(resData => {
+            console.log(resData);
+            this.fetchPosts()
+        }).catch(err => {
+            console.log(err);
+        });
 
     }
 
