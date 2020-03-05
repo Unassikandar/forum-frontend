@@ -86,7 +86,8 @@ class DiscussionPage extends Component {
         }).then(resData => {
             // console.log(resData);
             console.log(resData.data.createDiscussion._id.toString());
-            this.postHandler(resData.data.createDiscussion._id, "0", "0x01", "this.postEl");
+            console.log(this.postEl);
+            this.postHandler(resData.data.createDiscussion._id, "0", "0x01", this.postEl.current.value);
         }).catch(err => {
             console.log(err);
         });
