@@ -1,0 +1,12 @@
+.post__list-item {
+    display: block;
+    margin: 1rem auto;
+    width: 90%;
+    padding: 1rem;
+    border: 1px solid  rgb(86, 160, 170);
+    
+}
+
+.post__list-item button {
+    margin: 1rem;
+}
