@@ -30,7 +30,7 @@ app.use('/graphql', graphqlHttp({
 // connect to the mongoDB database
 mongoose
     .connect(
-        `mongodb+srv://unassikandar:D9vONiEmuO0ijbhK@cluster0-3zksz.mongodb.net/test?retryWrites=true&w=majority`
+        `mongodb+srv:` // Add connect string here
     ).then(() => {
         app.listen(8000);
     }).catch(err => {
